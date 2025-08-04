@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | The Brutalist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ---
+        Design 2: Dark Mode Brutalist
+        - Palette: Deep charcoal, off-white text, vibrant magenta accent.
+        - Typography: "IBM Plex Mono" for headings, "Inter" for body.
+        - Layout: Centered, structured, grid-based.
+        - Animation: Character reveal, magnetic buttons, scroll parallax.
+        - Texture: Sharp lines, solid blocks, no gradients.
+        --- */
+
+        :root {
+            --bg-color: #111111;
+            --text-color: #EAEAEA;
+            --accent-color: #FF007F;
+            --card-bg: #1A1A1A;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 7rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        /* --- Header --- */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 0;
+            z-index: 100;
+        }
+        
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+            border: 2px solid white;
+            padding: 0.5rem 1rem;
+        }
+        
+        .main-nav a {
+            margin-left: 2.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+        
+        #hero h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        #hero h1 .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation: reveal 0.5s forwards;
+        }
+        
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        #hero p {
+            font-size: 1.25rem;
+            color: #A0A0A0;
+            margin: 2rem 0;
+            max-width: 600px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s;
+        }
+        
+        .about-image:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            color: #A0A0A0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Projects Section --- */
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 7rem;
+        }
+        
+        .project-item:nth-child(even) .project-image {
+            order: 2;
+        }
+        
+        .project-image-wrapper {
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .project-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-info .tech-stack {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .project-info p {
+            color: #A0A0A0;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Contact Section --- */
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-content h2 {
+            font-size: 4rem;
+            line-height: 1.2;
+        }
+        
+        .contact-content p {
+            font-size: 1.2rem;
+            color: #A0A0A0;
+            margin: 2rem 0;
+        }
+        
+        .email-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+        
+        .email-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .email-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-socials a {
+            margin: 0 1.5rem;
+            color: #A0A0A0;
+            transition: color 0.3s;
+        }
+        
+        .footer-socials a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .main-nav { display: none; }
+            #hero h1 { font-size: 3rem; }
+            .about-content, .project-item { grid-template-columns: 1fr; }
+            .project-item:nth-child(even) .project-image { order: 1; }
+            .section-title, .contact-content h2 { font-size: 2.5rem; }
+            .email-link { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">[ YN ]</a>
+            <nav class="main-nav">
+                <a href="#about">01.About</a>
+                <a href="#projects">02.Projects</a>
+                <a href="#contact">03.Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="container">
+            <h1 id="hero-headline">Full-Stack Developer Crafting Digital Solutions.</h1>
+            <p>I build robust, scalable, and user-friendly web applications from concept to deployment.</p>
+            <a href="#contact" class="cta-button magnetic-btn">Let's Talk</a>
+        </section>
+
+        <section id="about" class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>I'm a problem-solver at heart, driven by the challenge of building elegant software.</h3>
+                    <p>My passion lies in the entire development lifecycle – from architecting a solid backend to creating a seamless front-end experience. I believe in writing clean, maintainable code and am always exploring new technologies to improve my craft.</p>
+                    <p>When I'm not coding, you can find me exploring new open-source projects or contributing to the developer community.</p>
+                </div>
+                <img src="https://placehold.co/600x800/111111/eaeaea?text=Profile" alt="Your Name" class="about-image">
+            </div>
+        </section>
+
+        <section id="projects" class="container">
+            <h2 class="section-title">Selected Work <span>(03)</span></h2>
+            
+            <div class="project-item">
+                <div class="project-image-wrapper">
+                    <img src="https://placehold.co/700x500/FF007F/111111?text=Project+Alpha" alt="Project Alpha" class="project-image">
+                </div>
+                <div class="project-info">
+                    <span class="tech-stack">Next.js / TypeScript / GraphQL</span>
+                    <h3>Project Alpha</h3>
+                    <p>A high-performance enterprise SaaS platform for data analytics. Features a complex dashboard with real-time updates and role-based access control.</p>
+                    <a href="#" class="cta-button magnetic-btn">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-image-wrapper">
+                    <img src="https://placehold.co/700x500/1A1A1A/EAEAEA?text=Project+Beta" alt="Project Beta" class="project-image">
+                </div>
+                <div class="project-info">
+                    <span class="tech-stack">Node.js / WebSockets / MongoDB</span>
+                    <h3>Project Beta</h3>
+                    <p>A collaborative real-time document editor, inspired by Google Docs. Built with a custom backend using Operational Transformation for conflict-free editing.</p>
+                    <a href="#" class="cta-button magnetic-btn">View on GitHub</a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-image-wrapper">
+                    <img src="https://placehold.co/700x500/333333/EAEAEA?text=Project+Gamma" alt="Project Gamma" class="project-image">
+                </div>
+                <div class="project-info">
+                    <span class="tech-stack">Python / Django / PostgreSQL</span>
+                    <h3>Project Gamma</h3>
+                    <p>A scalable e-commerce API that serves multiple front-end applications. Includes features like payment gateway integration, inventory management, and a recommendation engine.</p>
+                    <a href="#" class="cta-button magnetic-btn">Explore API Docs</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contact" class="container">
+            <div class="contact-content">
+                <h2>Have an idea? <br>Let's make it real.</h2>
+                <p>I'm currently available for new projects and collaborations. Whether you have a question or just want to say hi, my inbox is always open.</p>
+                <a href="mailto:your.email@example.com" class="email-link">your.email@example.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                <a href="#"><i data-lucide="github"></i></a>
+                <a href="#"><i data-lucide="linkedin"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Lucide Icons ---
+            lucide.createIcons();
+
+            // --- Headline Character Reveal ---
+            const headline = document.getElementById('hero-headline');
+            const text = headline.textContent;
+            headline.innerHTML = '';
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.03}s`;
+                headline.appendChild(span);
+            });
+
+            // --- Magnetic Buttons ---
+            document.querySelectorAll('.magnetic-btn').forEach(btn => {
+                btn.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - (rect.left + rect.width / 2);
+                    const y = e.clientY - (rect.top + rect.height / 2);
+                    this.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`;
+                });
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // --- Project Image Parallax on Scroll ---
+            const images = document.querySelectorAll('.project-image');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                images.forEach(img => {
+                    const imgTop = img.parentElement.getBoundingClientRect().top + window.scrollY;
+                    const imgHeight = img.parentElement.offsetHeight;
+                    // Check if the image wrapper is in the viewport
+                    if (scrollY + window.innerHeight > imgTop && scrollY < imgTop + imgHeight) {
+                        const speed = -5;
+                        // Calculate the transform value based on the scroll position relative to the element
+                        const transformValue = (scrollY - imgTop) / imgHeight * speed * 10;
+                        img.style.transform = `translateY(${transformValue}px) scale(1.1)`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
